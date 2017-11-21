@@ -16,6 +16,7 @@ Vector2 cannonPos;      //!< 砲台の位置
 Vector2 bulletPos;      //!< 弾の位置
 Rect    targetRect;     //!< ターゲットの矩形
 int     score;          //!< スコア
+int i = 1;              //!< 砲台の上下方向変換に使用
 
 
 // ゲーム開始時に呼ばれる関数です。
@@ -69,7 +70,15 @@ void Update()
     // 砲台の描画
     FillRect(Rect(cannonPos.x-10, -140, 20, 100), Color::blue);
     DrawImage("cannon.png", cannonPos);
-
+    
+    
+    cannonPos.y += 1 * i;
+    if (cannonPos.y >= -60 ) {
+        i *= -1;
+    }
+    if(cannonPos.y <= -150 ) {
+        i *= -1;
+    }
     // ターゲットの描画
     FillRect(targetRect, Color::red);
 
